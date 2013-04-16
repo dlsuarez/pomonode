@@ -32,5 +32,11 @@ Mongo = function(
 		});
 	}
 
+	this.clear = function() {
+		this.model.remove({}, function(err) {
+			if (err) console.log(err);
+		});
+	}
+
 	return this.init();
 }
