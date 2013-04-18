@@ -12,14 +12,4 @@ app.configure(function() {
 route = new route(app);
 route.routes();
 
-var mongo = new Mongo(
-	'localhost',
-	'pomonode',
-	new User()
-);
-mongo.save({ name: 'Nachete' });
-mongo.all(function(data) {
-	var all = data;
-});
-
 app.listen(3030);
