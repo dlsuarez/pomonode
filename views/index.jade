@@ -2,5 +2,16 @@ doctype 5
 html
   head
     title pomonode
+    link(rel='stylesheet', href='/stylesheets/style.css')
   body
     h1 pomonode
+    form(name='login', action='hello', method='post')
+      div(class='field')
+        span usuario
+        input(type='text', name='user')
+      div(class='field')
+        span password
+        input(type='password', name='pass')
+      div(class='field')
+        span &nbsp;
+        input(type='submit', name='submit')
