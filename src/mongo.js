@@ -16,25 +16,25 @@ Mongo = function(
 		console.log('Connect to mongodb');
 	}
 
-	this.save = function(data) {
+	this.save = function(data, callback) {
 		var model = new entity.model(data);
 		model.save(function(err) {
  			if (err) console.log(err);
-  			console.log(entity.name + ' saved');
+			callback(data);
 		});
 	}
 
 	this.all = function(callback) {
 		this.model.find(function(err, data) {
  			if (err) console.log(err);
-			console.log('Data: ' + data);
 			callback(data);
 		});
 	}
 
-	this.clear = function() {
+	this.clear = function(callback) {
 		this.model.remove({}, function(err) {
 			if (err) console.log(err);
+			callback();
 		});
 	}
 

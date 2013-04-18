@@ -14,7 +14,7 @@ describe('Mongo', function() {
 	);
 
 	beforeEach(function(done) {
-		db.clear();
+		db.clear(function() {});
 		done();
 	})
 
@@ -24,7 +24,19 @@ describe('Mongo', function() {
 				var all = data;
 				expect(all).to.be.empty;
 				done();
-			});   
+			});
+		})
+	})
+
+	describe('save()', function() {
+		it('insert a new record in a table', function(done){
+			db.save({ name: "aName" }, function() {
+				db.all(function(data) {
+					var all = data;
+					expect(all).not.to.be.empty;
+					done();
+				});
+			});
 		})
 	})
 
