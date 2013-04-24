@@ -19,14 +19,21 @@ Mongo = function(
 	this.save = function(data, callback) {
 		var model = new entity.model(data);
 		model.save(function(err) {
- 			if (err) console.log(err);
+			if (err) console.log(err);
+			callback(data);
+		});
+	}
+
+	this.find = function(filter, callback) {
+		this.model.find(filter, function(err, data) {
+			if (err) console.log(err);
 			callback(data);
 		});
 	}
 
 	this.all = function(callback) {
 		this.model.find(function(err, data) {
- 			if (err) console.log(err);
+			if (err) console.log(err);
 			callback(data);
 		});
 	}

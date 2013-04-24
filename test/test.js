@@ -13,18 +13,9 @@ describe('Mongo,', function() {
 		new User()
 	);
 
-	beforeEach(function(done) {
+	before(function(done) {
 		db.clear(function() {});
 		done();
-	})
-
-	describe('"all" method,', function() {
-		it('respond with all records', function(done) {
-			db.all(function(data) {
-				expect(data).to.be.empty;
-				done();
-			});
-		})
 	})
 
 	describe('"save" method,', function() {
@@ -35,6 +26,25 @@ describe('Mongo,', function() {
 					expect(data[0]['name']).to.equal("aName");
 					done();
 				});
+			});
+		})
+	})
+
+	describe('"find" method,', function() {
+		it('respond with a posible existing record', function(done) {
+			db.find({ name: "aName" }, function(results) {
+				expect(results).not.to.be.empty;
+				expect(results[0]['name']).to.equal("aName");
+				done();
+			});
+		})
+	})
+
+	describe('"all" method,', function() {
+		it('respond with all records', function(done) {
+			db.all(function(data) {
+				expect(data).to.be.empty;
+				done();
 			});
 		})
 	})
