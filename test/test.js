@@ -6,7 +6,7 @@ var assert = require('chai').assert
 var expect = require('chai').expect
 var should = require('chai').should
 
-describe('Mongo', function() {
+describe('Mongo,', function() {
 	var db = new Mongo(
 		'localhost',
 		'test',
@@ -18,22 +18,21 @@ describe('Mongo', function() {
 		done();
 	})
 
-	describe('all()', function() {
-		it('respond with all records', function(done){
+	describe('"all" method,', function() {
+		it('respond with all records', function(done) {
 			db.all(function(data) {
-				var all = data;
-				expect(all).to.be.empty;
+				expect(data).to.be.empty;
 				done();
 			});
 		})
 	})
 
-	describe('save()', function() {
-		it('insert a new record in a table', function(done){
-			db.save({ name: "aName" }, function() {
+	describe('"save" method,', function() {
+		it('insert a new record in a table', function(done) {
+			db.save({ name: "aName" }, function(newRecord) {
 				db.all(function(data) {
-					var all = data;
-					expect(all).not.to.be.empty;
+					expect(data).not.to.be.empty;
+					expect(data[0]['name']).to.equal("aName");
 					done();
 				});
 			});
