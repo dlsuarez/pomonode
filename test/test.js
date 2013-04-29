@@ -23,7 +23,7 @@ describe('Mongo,', function() {
 			db.save({ name: "aName" }, function(newRecord) {
 				db.all(function(data) {
 					expect(data).not.to.be.empty;
-					expect(data[0]['name']).to.equal("aName");
+					expect(data[0]['name']).to.equal(newRecord['name']);
 					done();
 				});
 			});
@@ -43,8 +43,20 @@ describe('Mongo,', function() {
 	describe('"all" method,', function() {
 		it('respond with all records', function(done) {
 			db.all(function(data) {
-				expect(data).to.be.empty;
+				expect(data).not.to.be.empty;
+				expect(data[0]['name']).to.equal("aName");
 				done();
+			});
+		})
+	})
+
+	describe('"clear" method,', function() {
+		it('delete all records in a table', function(done) {
+			db.clear(function() {
+				db.all(function(data) {
+					expect(data).to.be.empty;
+					done();
+				});
 			});
 		})
 	})
